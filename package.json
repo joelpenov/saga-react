@@ -1,0 +1,41 @@
+{
+  "name": "saga-app",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Joel Peña",
+  "dependencies": {
+    "chance": "^1.0.10",
+    "cors": "^2.8.3",
+    "express": "^4.15.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1",
+    "yamljs": "^0.3.0"
+  },
+  "scripts": {
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "start:api": "node server.js",
+    "start:client": "react-scripts start",
+    "start": "run-p start:api start:client"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
