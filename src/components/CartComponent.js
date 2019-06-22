@@ -3,7 +3,7 @@ import React from "react";
 import HeaderComponent from "./HeaderComponent";
 import ProductsListComponent from "./ProductsListComponent";
 
-const CartComponent = ({ products }) => {
+const CartComponent = () => {
   return (
     <div>
       <HeaderComponent />

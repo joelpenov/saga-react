@@ -2,31 +2,28 @@ import React from "react";
 import SummaryComponent from "./SummaryComponent";
 import ProductDetailComponent from "./ProductDetailComponent";
 import ClientInfoComponent from "./ClientInfoComponent";
-import SpinnerComponent from "./spinner/SpinnerComponent";
+import { connect } from "react-redux";
 
-const ProductsListComponent = ({ products }) => {
-  let counter = 0;
+const ProductsListComponent = ({ cartProductIds }) => {
   return (
     <section className="course_details_area">
       <div className="row">
         <div className="header-title-brand col-lg-12 header-title-brand ">
           <h1>Arias's Shop</h1>
-          <ClientInfoComponent clientInfo={undefined} />
+          <ClientInfoComponent />
         </div>
       </div>
       <div className="row">
         <div className="col-lg-6 course_details_left">
           <div className="main_image">
             <div className="contact_info">
-              {products.length === 0 && <p>Loading produts...</p>}
-              {products.map(p => {
+              {cartProductIds.length === 0 && <p>Loading products...</p>}
+              {cartProductIds.map(p => {
                 return (
                   <ProductDetailComponent
-                    name={"Mousepad"}
-                    description={"A unique technology at the reach of you"}
-                    quantity={1}
-                    price={54}
-                    key={counter++}
+                    quantity={p.quantity}
+                    id={p.id}
+                    key={p.id}
                   />
                 );
               })}
@@ -42,4 +39,17 @@ const ProductsListComponent = ({ products }) => {
   );
 };
 
-export default ProductsListComponent;
+const mapStateToProps = ({ cartProductIds }) => {
+  return {
+    cartProductIds
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductsListComponent);

@@ -1,8 +1,9 @@
 import React from "react";
-import SpinnerComponent from "./spinner/SpinnerComponent";
+import { connect } from "react-redux";
 
-const ClientInfoCompoent = ({ clientInfo }) => {
-  if (!clientInfo)
+const ClientInfoComponent = ({ userInfo }) => {
+  const { name, address1, phone } = userInfo;
+  if (!name)
     return (
       <p>
         <small>Loading user info...</small>
@@ -10,12 +11,22 @@ const ClientInfoCompoent = ({ clientInfo }) => {
     );
 
   return (
-    <p>
-      <small>Info a</small>
-      <br />
-      <small>Info a</small>
-    </p>
+    <>
+      <h3>{name}</h3>
+      <p>
+        <br />
+        <small>{address1}</small>
+        <br />
+        <small>{phone}</small>
+      </p>
+    </>
   );
 };
 
-export default ClientInfoCompoent;
+const mapStateToProps = ({ userInfo }) => {
+  return {
+    userInfo
+  };
+};
+
+export default connect(mapStateToProps)(ClientInfoComponent);

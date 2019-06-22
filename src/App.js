@@ -1,10 +1,22 @@
 import React, { Component } from "react";
+import { Provider } from "react-redux";
+import configStore from "./redux/configStore";
+
 import CartComponent from "./components/CartComponent";
 import "./style/edustage.css";
+import initialState from "./redux/initialState";
+import { getUserInfoAction } from "./redux/actions/userInfo/userInfoActions";
+
+const store = configStore();
 
 export default class App extends Component {
   render() {
-    const products = [];
-    return <CartComponent products={products} />;
+    return (
+      <Provider store={store}>
+        <CartComponent products={initialState.products} />
+      </Provider>
+    );
   }
 }
+
+store.dispatch(getUserInfoAction("U10000"));
