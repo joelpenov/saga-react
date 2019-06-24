@@ -20,7 +20,7 @@ export const requestDecrementProductQuantity = productId => {
   return { type: actionTypes.REQUEST_DECREMENT_PRODUCT_QUANTITY, productId };
 };
 
-export const quantityRequestStatus = status => {
+export const requestStatus = status => {
   return { type: status, status };
 };
 

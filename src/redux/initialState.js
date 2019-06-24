@@ -4,6 +4,8 @@ export default {
   products: [],
   userInfo: {},
   cartProductIds: [],
-  fetchQuantityStatus: actionTypes.PRODUCT_QUANTITY_FETCH_DONE,
-  employeeAvailability: true
+  fetchingRequest: actionTypes.FETCH_REQUEST_DONE,
+  employeeAvailability: false,
+  shipping: 0,
+  tax: 0
 };

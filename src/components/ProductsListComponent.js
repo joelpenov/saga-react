@@ -37,7 +37,7 @@ const ProductsListComponent = ({ cartProductIds, employeeAvailability }) => {
                       color: "forestgreen",
                       fontWeight: "bold"
                     }
-                  : {}
+                  : null
               }
             >
               Customer support is {!employeeAvailability && <span>not</span>}{" "}

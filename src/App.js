@@ -22,4 +22,12 @@ export default class App extends Component {
 }
 
 store.dispatch(getUserInfoAction("U10000"));
-store.dispatch({ type: "SET_EMPLOYEE_AVAILABILITY", newStatus: false });
+
+/*
+TODO: 
+Checkout
+validateUserCart /cart/validate/{userid}
+validateUserCreditCard /card/validate/{userid}
+performpurchase card/charge/{userid}
+
+*/

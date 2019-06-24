@@ -84,7 +84,7 @@ class ProductDetailComponent extends Component {
 }
 
 const mapStateToProps = (
-  { products, fetchQuantityStatus, cartProductIds },
+  { products, fetchingRequest, cartProductIds },
   ownProps
 ) => {
   let price;
@@ -94,8 +94,7 @@ const mapStateToProps = (
   }
   return {
     product: products.find(x => x.id === ownProps.id) || {},
-    canChangeQuantity:
-      fetchQuantityStatus === actionTypes.PRODUCT_QUANTITY_FETCH_DONE,
+    canChangeQuantity: fetchingRequest === actionTypes.FETCH_REQUEST_DONE,
     price
   };
 };

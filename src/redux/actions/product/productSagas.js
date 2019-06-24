@@ -13,7 +13,7 @@ import {
   loadUserCartProductIdsSuccess,
   loadCartProduct,
   loadCartProductSuccess,
-  quantityRequestStatus,
+  requestStatus,
   setProductPrice
 } from "../product/productActions";
 
@@ -50,7 +50,7 @@ export function* requestIncrementProductQuantitySaga({
   if (type !== actionTypes.REQUEST_INCREMENT_PRODUCT_QUANTITY || local === true)
     return;
   const { id } = yield select(state => state.userInfo);
-  yield put(quantityRequestStatus(actionTypes.FETCHING_PRODUCT_QUANTITY));
+  yield put(requestStatus(actionTypes.FETCHING_REQUEST));
   const response = yield call(
     fetch,
     `http://localhost:2014/cart/add/${id}/${productId}`
@@ -64,7 +64,7 @@ export function* requestIncrementProductQuantitySaga({
     });
   }
 
-  yield put(quantityRequestStatus(actionTypes.PRODUCT_QUANTITY_FETCH_DONE));
+  yield put(requestStatus(actionTypes.FETCH_REQUEST_DONE));
 }
 
 export function* requestDecrementProductQuantitySaga({
@@ -75,7 +75,7 @@ export function* requestDecrementProductQuantitySaga({
   if (type !== actionTypes.REQUEST_DECREMENT_PRODUCT_QUANTITY || local === true)
     return;
   const { id } = yield select(state => state.userInfo);
-  yield put(quantityRequestStatus(actionTypes.FETCHING_PRODUCT_QUANTITY));
+  yield put(requestStatus(actionTypes.FETCHING_REQUEST));
   const response = yield call(
     fetch,
     `http://localhost:2014/cart/remove/${id}/${productId}`
@@ -89,7 +89,7 @@ export function* requestDecrementProductQuantitySaga({
     });
   }
 
-  yield put(quantityRequestStatus(actionTypes.PRODUCT_QUANTITY_FETCH_DONE));
+  yield put(requestStatus(actionTypes.FETCH_REQUEST_DONE));
 }
 
 export function* requestProductQuantitySaga() {

@@ -4,13 +4,17 @@ import productIdsReducer from "./productIdsReducer";
 import productsReducer from "./productReducer";
 import productQuantityFetchSatusReducer from "./productQuantityFetchStatusReducer";
 import employeeAvailabilityReducer from "./employeeAvailabilityReducer";
+import shippingReducer from "./shippingReducer";
+import taxReducer from "./taxReducer";
 
 const rootReducers = combineReducers({
   userInfo: userInfoReducer,
   cartProductIds: productIdsReducer,
   products: productsReducer,
-  fetchQuantityStatus: productQuantityFetchSatusReducer,
-  employeeAvailability: employeeAvailabilityReducer
+  fetchingRequest: productQuantityFetchSatusReducer,
+  employeeAvailability: employeeAvailabilityReducer,
+  shipping: shippingReducer,
+  tax: taxReducer
 });
 
 export default rootReducers;

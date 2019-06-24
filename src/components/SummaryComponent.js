@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import SpinnerComponent from "./spinner/SpinnerComponent";
 import { connect } from "react-redux";
+import actionTypes from "../redux/actions/actionTypes";
 
 class SummaryComponent extends Component {
   render() {
-    let { subTotal, shipping, tax, total } = this.props;
+    let { subTotal, shipping, tax, requestInProgress } = this.props;
+    const total = subTotal + shipping + tax;
+    const canDisplayTotal = subTotal > 0 && shipping > 0 && tax > 0;
     return (
       <div className="col-lg-6 right-contents">
         <h3>Order summary</h3>
@@ -40,25 +43,33 @@ class SummaryComponent extends Component {
             <span className="justify-content-between d-flex">
               <p>Total</p>
               <span className="or">
-                {!(total > 0) && <SpinnerComponent />}
-                {total > 0 && <span>${total}</span>}
+                {!canDisplayTotal && <SpinnerComponent />}
+                {canDisplayTotal && <span>${total}</span>}
               </span>
             </span>
           </li>
         </ul>
-        <span
-          id="enroll-botton"
-          href="#"
+        <button
           className="primary-btn2 text-uppercase enroll rounded-0 text-white"
+          id="enroll-botton"
+          disabled={!requestInProgress}
+          onClick={() => {
+            console.log("click");
+          }}
         >
           Check out
-        </span>
+        </button>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ cartProductIds }) => {
+const mapStateToProps = ({
+  cartProductIds,
+  shipping,
+  fetchingRequest,
+  tax
+}) => {
   let subTotal;
   if (cartProductIds.length > 0) {
     let allPricesSet = true;
@@ -72,7 +83,10 @@ const mapStateToProps = ({ cartProductIds }) => {
     }, 0);
   }
   return {
-    subTotal
+    subTotal,
+    shipping,
+    tax,
+    requestInProgress: fetchingRequest === actionTypes.FETCH_REQUEST_DONE
   };
 };
 

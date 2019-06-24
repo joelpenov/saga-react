@@ -7,7 +7,6 @@ export default function employeeAvailabilityReducer(
 ) {
   switch (action.type) {
     case actionTypes.SET_EMPLOYEE_AVAILABILITY:
-      console.log("New reducer status: " + action.newStatus);
       return action.newStatus;
     default:
       return state;
