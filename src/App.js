@@ -6,6 +6,8 @@ import CartComponent from "./components/CartComponent";
 import "./style/edustage.css";
 import initialState from "./redux/initialState";
 import { getUserInfoAction } from "./redux/actions/userInfo/userInfoActions";
+import io from "socket.io-client";
+window.io = io;
 
 const store = configStore();
 
@@ -20,3 +22,4 @@ export default class App extends Component {
 }
 
 store.dispatch(getUserInfoAction("U10000"));
+store.dispatch({ type: "SET_EMPLOYEE_AVAILABILITY", newStatus: false });

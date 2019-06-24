@@ -4,7 +4,7 @@ import ProductDetailComponent from "./ProductDetailComponent";
 import ClientInfoComponent from "./ClientInfoComponent";
 import { connect } from "react-redux";
 
-const ProductsListComponent = ({ cartProductIds }) => {
+const ProductsListComponent = ({ cartProductIds, employeeAvailability }) => {
   return (
     <section className="course_details_area">
       <div className="row">
@@ -30,7 +30,19 @@ const ProductsListComponent = ({ cartProductIds }) => {
             </div>
           </div>
           <div className="info_item  text-center text-sm-left">
-            <small>Available information here</small>
+            <small
+              style={
+                employeeAvailability
+                  ? {
+                      color: "forestgreen",
+                      fontWeight: "bold"
+                    }
+                  : {}
+              }
+            >
+              Customer support is {!employeeAvailability && <span>not</span>}{" "}
+              available now.
+            </small>
           </div>
         </div>
         <SummaryComponent subTotal={0} total={0} shipping={0} tax={0} />
@@ -39,9 +51,10 @@ const ProductsListComponent = ({ cartProductIds }) => {
   );
 };
 
-const mapStateToProps = ({ cartProductIds }) => {
+const mapStateToProps = ({ cartProductIds, employeeAvailability }) => {
   return {
-    cartProductIds
+    cartProductIds,
+    employeeAvailability
   };
 };
 

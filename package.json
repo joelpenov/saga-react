@@ -7,12 +7,15 @@
     "chance": "^1.0.10",
     "cors": "^2.8.3",
     "express": "^4.15.3",
+    "http": "^0.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
     "react-scripts": "3.0.1",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.3",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
     "yamljs": "^0.3.0"
   },
   "scripts": {
@@ -21,7 +24,8 @@
     "eject": "react-scripts eject",
     "start:api": "node server.js",
     "start:client": "react-scripts start",
-    "start": "run-p start:api start:client"
+    "start:socket": "node socketServer.js",
+    "start": "run-p start:api start:client start:socket"
   },
   "eslintConfig": {
     "extends": "react-app"

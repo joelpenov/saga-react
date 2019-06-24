@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import SpinnerComponent from "./spinner/SpinnerComponent";
+import { connect } from "react-redux";
 
-export default class SummaryComponent extends Component {
+class SummaryComponent extends Component {
   render() {
     let { subTotal, shipping, tax, total } = this.props;
     return (
@@ -56,3 +57,23 @@ export default class SummaryComponent extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ cartProductIds }) => {
+  let subTotal;
+  if (cartProductIds.length > 0) {
+    let allPricesSet = true;
+    subTotal = cartProductIds.reduce((currentSubTotal, currentProduct) => {
+      if (!allPricesSet) return 0;
+      if (!currentProduct.price) {
+        allPricesSet = false;
+        return 0;
+      }
+      return currentProduct.price * currentProduct.quantity + currentSubTotal;
+    }, 0);
+  }
+  return {
+    subTotal
+  };
+};
+
+export default connect(mapStateToProps)(SummaryComponent);

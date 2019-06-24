@@ -21,9 +21,10 @@ class ProductDetailComponent extends Component {
       id,
       canChangeQuantity,
       requestIncrementProductQuantity,
-      requestDecrementProductQuantity
+      requestDecrementProductQuantity,
+      price
     } = this.props;
-    const { name, description, price } = product;
+    const { name, description } = product;
 
     if (!this.productDetailsAreLoaded(name)) {
       return (
@@ -82,11 +83,20 @@ class ProductDetailComponent extends Component {
   }
 }
 
-const mapStateToProps = ({ products, fetchQuantityStatus }, ownProps) => {
+const mapStateToProps = (
+  { products, fetchQuantityStatus, cartProductIds },
+  ownProps
+) => {
+  let price;
+  const prodId = cartProductIds.find(x => x.id === ownProps.id);
+  if (prodId) {
+    price = prodId.price;
+  }
   return {
     product: products.find(x => x.id === ownProps.id) || {},
     canChangeQuantity:
-      fetchQuantityStatus === actionTypes.PRODUCT_QUANTITY_FETCH_DONE
+      fetchQuantityStatus === actionTypes.PRODUCT_QUANTITY_FETCH_DONE,
+    price
   };
 };
 
