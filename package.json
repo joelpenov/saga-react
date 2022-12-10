@@ -6,7 +6,7 @@
   "dependencies": {
     "chance": "^1.0.10",
     "cors": "^2.8.3",
-    "express": "^4.15.3",
+    "express": "^4.17.3",
     "http": "^0.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
